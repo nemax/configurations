@@ -7,6 +7,8 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
+"set fdm=syntax
+
 set nu
 set ruler
 command Tlopen TlistOpen
@@ -15,9 +17,9 @@ nmap <leader>h : !Markdown.pl --html4tags % > %:r.html <CR><CR>
 nmap <leader>s : !lynx %:r.html <CR><CR>
 
 
-colorscheme darkblue
+"colorscheme darkblue
 
-"Vundle requirements
+""""""""""""""""""""""""""""''"Vundle requirements""""""""""""""""""""""""""""
 set nocompatible              " be iMproved
 filetype off                  " required!
 
@@ -51,9 +53,10 @@ filetype plugin indent on     " required!
 	" "
 	" " see :h vundle for more details or wiki for FAQ
 	" " NOTE: comments after Bundle commands are not allowed.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-" My bundles here:
+"""""""""""""""""""""""""""""""""" My bundles here""""""""""""""""""""""""""""
 
 "Hammer is a Vim plugin written (mostly) in Ruby. It can be used to transform
 "your markup language of choice to HTML, and open the transformed HTML in
@@ -72,12 +75,12 @@ Bundle "honza/vim-snippets"
 "Bundle "instant-markdown.vim"
 Bundle "plasticboy/vim-markdown"
 Bundle "Lokaltog/vim-easymotion"
-Bundle "joequery/Stupid-EasyMotion"
-Bundle "rainbow_parentheses.vim"
-Bundle "tomtom/tcomment_vim"
-Bundle "tpope/vim-surround"
-"Bundle ""
+"Bundle "joequery/Stupid-EasyMotion"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""Plugin Configurations""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""hammer.vim""""""""""""""""""
 function! CurDir()
 	let curdir = substitute(getcwd(), $HOME, "~", "g")
 	return curdir
@@ -93,20 +96,18 @@ func! GetFilePath()
 	return expand("%:h")
 endf
 
-
-"Plug-in settings goes here:
-
-"hammer.vim
 let g:HAMMER_DIRECTORY=expand("%:h")
 let g:HAMMER_BROWSER='iceweasel'
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"vim-markdown
+"""""""""""""""""vim-markdown""""""""""""""""""""""
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd 
 let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_initial_foldlevel=1
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"rainbow_parenthese to be alway on
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+""""""""""""""""""easymotion"""""""""""""""""""""""
+let g:Easymotion_do_mapping = 1
+let g:Easymotion_leader_key = '<leader><leader>'
+let g:Easymotion_mapping_e = 'f'
+let g:Easymotion_mapping_E = 't'
