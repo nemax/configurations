@@ -1,0 +1,112 @@
+syntax on
+filetype plugin on
+
+set cindent
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+set nu
+set ruler
+command Tlopen TlistOpen
+
+nmap <leader>h : !Markdown.pl --html4tags % > %:r.html <CR><CR>
+nmap <leader>s : !lynx %:r.html <CR><CR>
+
+
+colorscheme darkblue
+
+"Vundle requirements
+set nocompatible              " be iMproved
+filetype off                  " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+"let Vundle manage Vundle		" required! 
+Bundle 'gmarik/vundle'
+	"
+	" " My bundles here:
+	" "
+	" " original repos on GitHub
+	" Bundle 'tpope/vim-fugitive'
+	" Bundle 'Lokaltog/vim-easymotion'
+	" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+	" Bundle 'tpope/vim-rails.git'
+	" " vim-scripts repos
+	" Bundle 'L9'
+	" Bundle 'FuzzyFinder'
+	" " non-GitHub repos
+	" Bundle 'git://git.wincent.com/command-t.git'
+	" " Git repos on your local machine (i.e. when working on your own plugin)
+	" Bundle 'file:///Users/gmarik/path/to/plugin'
+	" " ...
+	"
+filetype plugin indent on     " required!
+	"Brief help
+	":BundleList          - list configured bundles
+	":BundleInstall(!)    - install (update) bundles
+	":BundleSearch(!) foo - search (or refresh cache first) for foo
+	":BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
+	" "
+	" " see :h vundle for more details or wiki for FAQ
+	" " NOTE: comments after Bundle commands are not allowed.
+
+
+" My bundles here:
+
+"Hammer is a Vim plugin written (mostly) in Ruby. It can be used to transform
+"your markup language of choice to HTML, and open the transformed HTML in
+"whatever your favorite browser is.	
+Bundle 'matthias-guenther/hammer.vim'
+
+"SnipMate aims to provide support for textual snippets, similar to TextMate or
+"other Vim plugins like UltiSnips.
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+
+"SnipMate doesn`t ship with any snippets,so use the repo to get snippets
+Bundle "honza/vim-snippets"
+
+"Bundle "instant-markdown.vim"
+Bundle "plasticboy/vim-markdown"
+Bundle "Lokaltog/vim-easymotion"
+Bundle "joequery/Stupid-EasyMotion"
+Bundle "rainbow_parentheses.vim"
+Bundle "tomtom/tcomment_vim"
+Bundle "tpope/vim-surround"
+"Bundle ""
+
+function! CurDir()
+	let curdir = substitute(getcwd(), $HOME, "~", "g")
+	return curdir
+endfunction
+
+func! GetPWD()
+	return substitute(getcwd(), "", "", "g")
+endf
+
+func! GetFilePath()
+"	let g:p = bufname("%")
+"	let g:p = substitute(g:p, ",\\=[^,]*$", "", "")
+	return expand("%:h")
+endf
+
+
+"Plug-in settings goes here:
+
+"hammer.vim
+let g:HAMMER_DIRECTORY=expand("%:h")
+let g:HAMMER_BROWSER='iceweasel'
+
+"vim-markdown
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=mkd 
+let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_initial_foldlevel=1
+
+"rainbow_parenthese to be alway on
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
