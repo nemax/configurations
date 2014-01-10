@@ -1,23 +1,48 @@
-syntax on
+"""""""""""""""""""""""""""vim general configure""""""""""""""""""""""""""""""
+
+"enble filetype detection
 filetype plugin on
 
+"Syntax highlight
+syntax enable
+
+"Set code indent mode
 set cindent
+
+"Show line number
+set nu
+"Show cursor index(at the lower right coner)
+set ruler
+
+"Ignore case when using search in vim
+set ignorecase
 
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+"Since vim7.4 automatically compatible with vi,so set this to
+"ensure you can use backspace(<-) to delete characters.
+"set nocompatible is required too,but I have set later because
+"of the requirement of vundle,see below
+"set backspace is used to specify working mode of backspace
+"indent is required if you set any indent for vim
+"eol is required to use backspace to go to lines foreward.
+"start is require when you want to delete the characters before \
+"last insertion
+set backspace=indent,eol,start
+
+
 
 "set fdm=syntax
 
-set nu
-set ruler
 command Tlopen TlistOpen
 
 nmap <leader>h : !Markdown.pl --html4tags % > %:r.html <CR><CR>
 nmap <leader>s : !lynx %:r.html <CR><CR>
 
 
-"colorscheme darkblue
+colorscheme darkblue
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""''"Vundle requirements""""""""""""""""""""""""""""
 set nocompatible              " be iMproved
@@ -53,7 +78,7 @@ filetype plugin indent on     " required!
 	" "
 	" " see :h vundle for more details or wiki for FAQ
 	" " NOTE: comments after Bundle commands are not allowed.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""" My bundles here""""""""""""""""""""""""""""
@@ -78,6 +103,7 @@ Bundle "Lokaltog/vim-easymotion"
 Bundle "rainbow_parentheses.vim"
 Bundle "tomtom/tcomment_vim"
 Bundle "tpope/vim-surround"
+Bundle "Valloric/YouCompleteMe"
 "Bundle "joequery/Stupid-EasyMotion"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
